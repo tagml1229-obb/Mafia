@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>마피아 게임</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 첫 화면 -->
+  <section id="home" class="screen">
+    <h1>🌙 마피아</h1>
+    <p class="sub">친구들과 같이 하는 웹 마피아 게임</p>
+
+    <div id="setup-warning" class="card warn hidden">
+      <b>Firebase 설정이 아직 안 됐어요.</b><br>
+      <code>firebase-config.js</code> 파일에 내 Firebase 프로젝트 값을 넣어주세요. (README.md 참고)
+    </div>
+
+    <div class="card">
+      <label>닉네임</label>
+      <input id="name" maxlength="12" placeholder="최대 12자" autocomplete="off">
+
+      <button id="create" class="primary">방 만들기</button>
+
+      <div class="divider">또는</div>
+
+      <label>방 코드</label>
+      <div class="row">
+        <input id="code" maxlength="4" placeholder="ABCD" autocomplete="off">
+        <button id="join">참가</button>
+      </div>
+      <p id="home-error" class="error"></p>
+    </div>
+  </section>
+
+  <!-- 게임 화면 -->
+  <section id="room" class="screen hidden">
+    <header class="topbar">
+      <div>
+        <span class="muted">방 코드</span>
+        <b id="room-code" class="code" title="클릭하면 복사"></b>
+      </div>
+      <div id="phase" class="phase"></div>
+      <div class="right">
+        <span id="timer" class="timer"></span>
+        <button id="skip" class="small hidden" title="다음 단계로 바로 넘기기">⏭ 넘기기</button>
+      </div>
+    </header>
+
+    <div id="role-card" class="card role hidden"></div>
+    <div id="banner" class="banner hidden"></div>
+
+    <main class="grid">
+      <div class="card">
+        <div class="panel-head">
+          <h2>플레이어 <span id="count" class="muted"></span></h2>
+          <div id="host-controls"></div>
+        </div>
+        <p id="hint" class="hint"></p>
+        <ul id="players" class="players"></ul>
+      </div>
+
+      <div class="card chat">
+        <div class="tabs">
+          <button data-tab="all" class="tab active">전체</button>
+          <button data-tab="mafia" class="tab mafia-tab hidden">🔪 마피아</button>
+        </div>
+        <div id="messages" class="messages"></div>
+        <form id="chat-form" class="row">
+          <input id="chat-input" maxlength="300" autocomplete="off">
+          <button>전송</button>
+        </form>
+      </div>
+    </main>
+  </section>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
