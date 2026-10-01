@@ -48,7 +48,7 @@ input {
   border: 1px solid var(--line);
   background: var(--bg);
   color: var(--text);
-  font-size: 15px;
+  font-size: 16px; /* 16px 미만이면 아이폰에서 입력할 때 화면이 확대됨 */
   min-width: 0;
 }
 input:focus { outline: 2px solid var(--accent); border-color: transparent; }
@@ -138,3 +138,15 @@ button.danger { color: var(--red); }
   color: #b9b0ff; font-size: 14px;
   background: rgba(124,108,255,.12); border-radius: 8px; padding: 6px 8px;
 }
+
+.conn {
+  text-align: center; font-size: 14px; padding: 10px; border-radius: 10px; margin-bottom: 14px;
+  background: rgba(255,204,77,.12); color: var(--yellow);
+}
+.toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+  background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 99px; font-size: 14px;
+  max-width: calc(100% - 32px); text-align: center;
+}
+.tag.off { background: rgba(139,143,163,.15); }
+#share { margin-left: 4px; }

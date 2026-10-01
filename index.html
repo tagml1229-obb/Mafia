@@ -2,7 +2,8 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1117">
   <title>마피아 게임</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,24 +11,19 @@
   <!-- 첫 화면 -->
   <section id="home" class="screen">
     <h1>🌙 마피아</h1>
-    <p class="sub">친구들과 같이 하는 웹 마피아 게임</p>
-
-    <div id="setup-warning" class="card warn hidden">
-      <b>Firebase 설정이 아직 안 됐어요.</b><br>
-      <code>firebase-config.js</code> 파일에 내 Firebase 프로젝트 값을 넣어주세요. (README.md 참고)
-    </div>
+    <p class="sub">링크만 있으면 폰으로 바로 하는 마피아 게임</p>
 
     <div class="card">
-      <label>닉네임</label>
+      <label for="name">닉네임</label>
       <input id="name" maxlength="12" placeholder="최대 12자" autocomplete="off">
 
       <button id="create" class="primary">방 만들기</button>
 
       <div class="divider">또는</div>
 
-      <label>방 코드</label>
+      <label for="code">방 코드</label>
       <div class="row">
-        <input id="code" maxlength="4" placeholder="ABCD" autocomplete="off">
+        <input id="code" maxlength="4" placeholder="ABCD" autocomplete="off" inputmode="latin">
         <button id="join">참가</button>
       </div>
       <p id="home-error" class="error"></p>
@@ -39,15 +35,17 @@
     <header class="topbar">
       <div>
         <span class="muted">방 코드</span>
-        <b id="room-code" class="code" title="클릭하면 복사"></b>
+        <b id="room-code" class="code"></b>
+        <button id="share" class="small">🔗 초대</button>
       </div>
       <div id="phase" class="phase"></div>
       <div class="right">
         <span id="timer" class="timer"></span>
-        <button id="skip" class="small hidden" title="다음 단계로 바로 넘기기">⏭ 넘기기</button>
+        <button id="skip" class="small hidden">⏭ 넘기기</button>
       </div>
     </header>
 
+    <div id="conn" class="conn hidden"></div>
     <div id="role-card" class="card role hidden"></div>
     <div id="banner" class="banner hidden"></div>
 
@@ -75,6 +73,9 @@
     </main>
   </section>
 
-  <script type="module" src="app.js"></script>
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
